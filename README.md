@@ -18,15 +18,19 @@ mask:markRegion(0, 0, 10, 20, true)
 
 -- Subtract a region from (15, 6) to (-10, -100) false, making an L shape of true bits.
 mask:markRegion(15, 15, -25, -115, false)
--- It's okay to swap the order and go in reverse for :markRegion().
--- The same is not true for the :get() and :set() methods.
+-- The parameters are processed to stay within a bitmask's bounds.
+-- It's okay to go in reverse and out of bounds in :markRegion().
 
 -- Print out the left, top, right, and bottom edges of the true bits. Also print the width and height of it.
 print(mask:getBounds()) -- 0, 0, 9, 19, 10, 20
 
 -- Invert all bits manually
+-- Since we're using a byte array created through the FFI, remember we start at 1 and end at size - 1, inclusive.
 for x = 0, mask.width - 1 do
 	for y = 0, mask.height - 1 do
+		-- :get() and :set() can read out of bounds.
+		-- :set() does not mark the mask as "dirty", meaning :getBounds() will return a cached boundary
+		-- instead of recalculating the boundary.
 		mask:set(x, y, not mask:get(x, y))
 	end
 end

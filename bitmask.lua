@@ -46,7 +46,7 @@ local BitmaskMT = {
 ---@return integer
 ---@return integer
 local function normalizeParams(dest, source, dx, dy, sx, sy, sw, sh)
-	-- Based off the Love2D source code.
+	-- Based off the Love2D source code, but modified to work in Lua.
 	-- https://github.com/love2d/love/blob/4770ca009dcc9f223dd934d3f440b9defdc1db48/src/modules/image/ImageData.cpp#L641
 
 	--[[
