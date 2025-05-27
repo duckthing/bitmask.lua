@@ -306,13 +306,13 @@ end
 ---@param h integer
 function Bitmask:paste(source, dx, dy, sx, sy, w, h)
 	dx, dy, sx, sy, w, h = normalizeParams(self, source, dx, dy, sx, sy, w, h)
-
 	local diffX, diffY = sx - dx, sy - dy
 	for i = dx, dx + w - 1 do
 		for j = dy, dy + h - 1 do
 			self:set(i, j, source:get(i + diffX, j + diffY))
 		end
 	end
+	self._dirty = true
 end
 
 ---Sets whether this bitmask is active
