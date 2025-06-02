@@ -326,7 +326,7 @@ end
 ---@param x integer
 ---@param y integer
 ---@return integer # Index
----@return integer # RShift
+---@return integer # LShift
 function Bitmask:getIndexAndShiftAmount(x, y)
 	local pos = x + y * self.width
 	local index = floor(pos * 0.125)
@@ -369,7 +369,7 @@ end
 ---@param x integer
 ---@param y integer
 ---@param value boolean
-function Bitmask: set(x, y, value)
+function Bitmask:set(x, y, value)
 	local index, shiftAmount = self:getIndexAndShiftAmount(x, y)
 	if value then
 		self.data[index] = bor(self.data[index], blshift(0b00000001, shiftAmount))
