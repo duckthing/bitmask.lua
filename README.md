@@ -25,7 +25,7 @@ mask:markRegion(15, 15, -25, -115, false)
 print(mask:getBounds()) -- 0, 0, 9, 19, 10, 20
 
 -- Invert all bits manually
--- Since we're using a byte array created through the FFI, remember we start at 1 and end at size - 1, inclusive.
+-- Since we're using a byte array created through the FFI, remember we start at 0 and end at size - 1, inclusive.
 for x = 0, mask.width - 1 do
 	for y = 0, mask.height - 1 do
 		-- :get() and :set() can read out of bounds.
